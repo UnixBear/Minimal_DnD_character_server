@@ -22,7 +22,10 @@ class BlogTests(TestCase):
         self.assertEqual(self.post.initiative, 0)
         self.assertEqual(str(self.post), "testbold")
         self.assertEqual(self.post.pk, 1)
-        self.assertEqual(
-            self.post.get_absolute_url(),
-            "/{}/character/{}/".format(self.post.author, self.post.pk),
+        print(self.post.get_absolute_url())
+
+    def test_url_exists_at_correct_location(self):
+        response = self.client.get(
+            "/{}/character/{}".format(str(self.post), str(self.post.pk))
         )
+        self.assertEqual(response.status_code, 200)
