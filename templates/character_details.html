@@ -1,23 +1,22 @@
-{% extends "base.html" %}
-{% block content %}
+{% extends "base.html" %} {% block content %}
 <div class="character-entry">
-    <h2>{{ charsheet.char_name }}</h2>
-    <h2>{{ charsheet.author }}</h2>
-    <table>
-        <thread>
-            <tr>
-                <th>Key</th>
-                <th>Value</th>
-            </tr>
-        </thread>
-        <tbody>
-            {% for k, v in charsheet.attack_options.items %}
-            <tr>
-                <th>{{ k }}</th>
-                <th>{{ v }}</th>
-            </tr>
-            {% endfor %}
-        </tbody>
-    </table>
+  <h2>{{ charsheet.char_name }}</h2>
+  <h2>{{ charsheet.author }}</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>Key</th>
+        <th>Value</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for k, v in charsheet.attack_options.items %}
+      <tr>
+        <th>{{ k }}</th>
+        <th>{{ v }}</th>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
 </div>
 {% endblock content %}

@@ -2,6 +2,7 @@ from django.db import models
 from django.urls import reverse
 from django.conf import settings
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.utils.text import slugify
 
 
 # for creating a relative unique id per
@@ -47,6 +48,7 @@ class charSheet(models.Model):
     # Hit Points
     max_hp = models.IntegerField(default=1)
     current_hp = models.IntegerField(default=8)
+
 
     # similar idea as items with a JSON version
     feats = models.JSONField(null=True, blank=True)
@@ -101,4 +103,4 @@ class charSheet(models.Model):
         return self.char_name
 
     def get_absolute_url(self):
-        return reverse("character_details", kwargs={"str": self.author, "pk": self.pk})
+        return reverse("character_details", args=[self.author, self.pk])
