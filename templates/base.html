@@ -1,18 +1,28 @@
 {% load static %}
 <html>
-
-<head>
+  <head>
     <title>Characters</title>
-    <link rel="stylesheet" href="{% static 'css/base.css' %}">
-    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400" rel="stylesheet">
-</head>
-
-<body>
-    <header>
-        <h1><a href="{% url 'home' %}">Characters</a></h1>
-    </header>
+    <link
+      href="https://fonts.googleapis.com/css?family=\
+Source+Sans+Pro:400"
+      rel="stylesheet"
+    />
+    <link href="{% static 'css/base.css' %}" rel="stylesheet" />
+  </head>
+  <body>
     <div>
-        {% block content %}
-        {% endblock content %}
+      <header>
+        <div class="nav-left">
+          <h1><a href="{% url 'home' %}">Character List</a></h1>
+        </div>
+        <div class="nav-right">
+          <ul>
+            <li><a href="{% url 'character_new' %}">+ New Character</a></li>
+            <li><a href=" {% url 'home' %} "> Home</a></li>
+          </ul>
+        </div>
+      </header>
+      {% block content %} {% endblock content %}
     </div>
-</body>
+  </body>
+</html>

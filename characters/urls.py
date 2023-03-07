@@ -1,5 +1,11 @@
 from django.urls import path
-from .views import CharacterListView, CharacterDetailView
+from .views import (
+    CharacterListView,
+    CharacterDetailView,
+    CharacterCreateView,
+    CharacterUpdateView,
+    CharacterDeleteView
+)
 
 urlpatterns = [
     path("", CharacterListView.as_view(), name="home"),
@@ -8,4 +14,19 @@ urlpatterns = [
         CharacterDetailView.as_view(),
         name="character_details",
     ),
+    path(
+        "character/new/",
+        CharacterCreateView.as_view(),
+        name="character_new",
+    ),
+    path(
+        "<str:author>/character/<int:pk>/edit",
+        CharacterUpdateView.as_view(),
+        name="character_update",
+    ),
+    path(
+        "<str:author>/character/<int:pk>/delete",
+        CharacterDeleteView.as_view(),
+        name="character_delete"
+        )
 ]

@@ -19,4 +19,18 @@
     </tbody>
   </table>
 </div>
+<p>
+  <a
+    href="{% url 'character_update' author=charsheet.author pk=charsheet.pk %}"
+  >
+    + Update Character</a
+  >
+</p>
+<p>
+  <a
+    href="{% url 'character_delete' author=charsheet.author pk=charsheet.pk %}"
+  >
+    + Delete Character</a
+  >
+</p>
 {% endblock content %}

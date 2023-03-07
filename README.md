@@ -3,11 +3,15 @@ The goal of this project is to create a dnd server one can run locally or deploy
 
 Todo:
     - set up models (User, character, dice-data)
-    - set up templates
-    - set up view logic between models and templates
+        - character models todo
+            - figure out spell list
+            - figure out how to translate between json and attack options
     - set up three apps (accounts, characters, dicedata)
     - instructions for setup locally and deploy
         - local: create .env file, then execute this command and save the output `python -c "import secrets; print(secrets.token_urlsafe())"`
         - in the .env file, which will be referenced by our `settings.py`, add the lines `SECRET_KEY=saved_output_of_previous_python_command` and DEBUG=True
         - also in the .env file add whatever the link to your database file is, like the postgres link if where you're deploying it to has one, but you will change this based if you'll deploy it
         - edit `DATABASES` in `settings.py` to `{"default": env.dj_db_url("DATABASE_URL", default="sqlite:///db.sqlite3"),}`
+    - web setup for character sheet
+        - https://github.com/lckynmbrsvn/DnD-5e-Character-Sheet use
+            - https://lckynmbrsvn.github.io/DnD-5e-Character-Sheet/ example

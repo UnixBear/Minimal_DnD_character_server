@@ -32,6 +32,8 @@ class charSheet(models.Model):
 
     level = models.IntegerField(default=1)
 
+    diety = models.CharField(max_length=45, default="Pelor")
+
     # stats
     charStr = models.IntegerField(default=10)
     charDex = models.IntegerField(default=10)
@@ -46,9 +48,18 @@ class charSheet(models.Model):
     items = models.JSONField(null=True, blank=True)
 
     # Hit Points
+    hit_dice = models.IntegerField(default=0)
     max_hp = models.IntegerField(default=1)
     current_hp = models.IntegerField(default=8)
+    temp_hp = models.IntegerField(default=0)
 
+    # saves
+    strength_proficiency = models.BooleanField(default=False)
+    dexterity_proficiency = models.BooleanField(default=False)
+    constitution_proficiency = models.BooleanField(default=False)
+    wisdom_proficiency = models.BooleanField(default=False)
+    intelligence_proficiency = models.BooleanField(default=False)
+    charisma_proficiency = models.BooleanField(default=False)
 
     # similar idea as items with a JSON version
     feats = models.JSONField(null=True, blank=True)
