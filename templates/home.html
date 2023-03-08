@@ -1,4 +1,7 @@
-{% extends "base.html" %} {% block content %} {% for character in object_list %}
+{% extends "base.html" %} 
+{% block content %} 
+{% if request.user.is_authenticated %}
+{% for character in object_list %}
 <div class="characters-entry">
   <h2>
     <a href="{% url 'character_details' character.author character.pk %}"
@@ -10,5 +13,10 @@
     Level {{ character.level }} {{ character.character_class }} {{ character.race }}
   </p>
 </div>
-
-{% endfor %} {% endblock content %}
+{% empty %}
+<li>No items found.</li>
+{% endfor %} 
+{% else %}
+<p>log in 2 c ur characters</p>
+{% endif %}
+{% endblock content %}
