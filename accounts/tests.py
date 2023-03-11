@@ -29,13 +29,3 @@ class SignupPageTest(TestCase):
         self.assertEqual(get_user_model().objects.all().count(), 1)
         self.assertEqual(get_user_model().objects.all()[0].username, "testuser")
         self.assertEqual(get_user_model().objects.all()[0].email, "testemail@email.com")
-
-        __pycache__/
-*.py[cod]
-*$py.class
-*.so
-.venv
-.venv2
-db.sqlite3
-.env
-staticfiles/
