@@ -19,7 +19,7 @@ class charSheet(models.Model):
     # group together different character sheets
     # together
     author = models.ForeignKey(
-        "auth.User",
+        settings.AUTH_USER_MODEL,
         on_delete=models.CASCADE,
     )
 
