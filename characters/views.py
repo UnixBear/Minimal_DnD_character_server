@@ -7,6 +7,7 @@ from django.views.generic.edit import (
 )
 from django.urls import reverse_lazy
 from .models import charSheet
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 # Create your views here.
 
@@ -30,7 +31,7 @@ class CharacterDetailView(DetailView):
     context_object_name = "charsheet"
 
 
-class CharacterCreateView(CreateView):
+class CharacterCreateView(LoginRequiredMixin, CreateView):
     model = charSheet
     template_name = "character_new.html"
     fields = "__all__"

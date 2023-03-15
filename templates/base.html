@@ -1,36 +1,61 @@
 {% load static %}
+<!DOCTYPE html>
 <html>
   <head>
-    <title>Characters</title>
-    <link
-      href="https://fonts.googleapis.com/css?family=\
-Source+Sans+Pro:400"
-      rel="stylesheet"
-    />
-    <link href="{% static 'css/base.css' %}" rel="stylesheet" />
+    <meta charset="utf-8">
+    <title> {% block title %}Characters{% endblock title %}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
   </head>
   <body>
-    <div>
-      <header>
-        <div class="nav-left">
-          <h1><a href="{% url 'home' %}">Character List</a></h1>
+    <header class="p-3 mb-3 border-bottom">
+      <div class="container d-flex justify-content-between">
+        <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+        <h1><a class="text-decoration-none navbar-brand" href="{% url 'home' %}">Character List</a></h1>
+             
+              {% if user.is_authenticated %}
         </div>
-        <div class="nav-right">
-          <ul>
-            <li><a href="{% url 'character_new' %}">+ New Character</a></li>
-            <li><a href=" {% url 'home' %} "> Home</a></li>
-          </ul>
+              <div class="ms-auto">
+                <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0"> 
+                <li><a href="{% url 'character_new' %}" class="btn btn-primary me-3">+ New Character</a></li>
+                <div class="dropdown d-inline-block">
+                  <a href="#" class="d-block link-dark text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
+                    {{ user.username }}
+                  </a>
+                  <ul class="dropdown-menu text-small" aria-labelledby="dropdownUser1">
+                    <li><a class="dropdown-item" href="{% url 'password_change'%}">Change password</a></li>
+                    <li><a class="dropdown-item" href="{% url 'logout' %}">Log Out</a></li>
+                  </ul>
+                </div>
+                </div>
+              </div>
+              {% else %}
+            </div>
+              <div class="text-end">
+                <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
+                  <li><a href="{% url 'signup' %}" class="btn btn-outline-primary mr-2" style="margin-right: 5px;">Sign Up</a></li>
+                  <li><a href="{% url 'login' %}" class="btn btn-primary">Log In</a></li>
+                </ul>
+              </div>
+              {% endif %}
+              </div>
+      </div>
+    </header>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-8">
+          {% if user.is_authenticated %}
+            <p>yes hello {{ user.username }}</p>
+            <p><a href="{% url 'logout' %}" class="btn btn-secondary">Log Out</a></p>
+          {% else %}
+            <p>ur not logged in </p>
+          {% endif %}
+          {% block content %} {% endblock content %}
         </div>
-      </header>
-      {% if user.is_authenticated %}
-        <p>yes hello {{ user.username }}</p>
-        <p><a href="{% url 'logout' %}">Log Out</a></p>
-      {% else %}
-        <p>ur not logged in </p>
-        <a href="{% url 'login' %}">Log In</a> | 
-        <a href="{% url 'signup' %}">Sign Up</a>
-      {% endif %}
-      {% block content %} {% endblock content %}
+      </div>
     </div>
+    <!-- Bootstrap JavaScript Bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
   </body>
-</html>
+  </html>
