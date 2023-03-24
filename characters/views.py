@@ -8,6 +8,7 @@ from django.views.generic.edit import (
 from django.urls import reverse_lazy
 from .models import charSheet
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.db import models
 
 # Create your views here.
 
@@ -29,6 +30,20 @@ class CharacterDetailView(DetailView):
     model = charSheet
     template_name = "character_details.html"
     context_object_name = "charsheet"
+
+
+class CharacterDetailTestingView(DetailView):
+    model = charSheet
+    template_name = "character_details_testing.html"
+    context_object_name = "charsheet"
+    stats_for_bonus = ["charStr", "charDex", "charCon", "charInt", "charWis", "charCha"]
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        modified_fields = self.object.get_stat_bonuses(self.stats_for_bonus)
+        context.update(modified_fields)
+
+        return context
 
 
 class CharacterCreateView(LoginRequiredMixin, CreateView):

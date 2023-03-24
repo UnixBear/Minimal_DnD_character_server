@@ -6,7 +6,13 @@ Todo:
         - character models todo
             - figure out spell list
             - figure out how to translate between json and attack options
-    - set up three apps (accounts, characters, dicedata)
+            - set up how armor items will modify ac
+    - set up dice app
+    - figure out how to have attributes in elements modify attributes in other elements
+    - save to json feature / print to pdf feature
+    - implement race maker
+
+
     - instructions for setup locally and deploy
         - local: create .env file, then execute this command and save the output `python -c "import secrets; print(secrets.token_urlsafe())"`
         - in the .env file, which will be referenced by our `settings.py`, add the lines `SECRET_KEY=saved_output_of_previous_python_command` and DEBUG=True

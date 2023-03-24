@@ -32,7 +32,31 @@ class charSheet(models.Model):
 
     level = models.IntegerField(default=1)
 
+    # we'll create a property to generate the
+    # proficiency bonus, passive perception,
+    # and spell save DC
+    @property
+    def proficiency_bonus(self):
+        return 1 + (self.level - 1) // 4
+
+    @property
+    def passive_perception(self):
+        return 10 + ((self.charWis - 10) // 2)
+
+    @property
+    def spell_save_DC(self):
+        return 8 + self.proficiency_bonus
+
     diety = models.CharField(max_length=45, default="Pelor")
+
+    # this generates the stat bonus you get from
+    # an attribute in a dictionary
+    def get_stat_bonuses(self, field_names):
+        stat_bonuses = {}
+        for field_name in field_names:
+            field_value = getattr(self, field_name)
+            stat_bonuses[field_name + "_bonus"] = (field_value - 10) // 2
+        return stat_bonuses
 
     # stats
     charStr = models.IntegerField(default=10)
@@ -64,7 +88,18 @@ class charSheet(models.Model):
     # similar idea as items with a JSON version
     feats = models.JSONField(null=True, blank=True)
 
+    # initiative
     initiative = models.IntegerField(default=0)
+
+    # armor class
+    natural_armor = models.IntegerField(default=0)
+
+    @property
+    def armor_class(self):
+        return 10 + self.natural_armor + ((self.charDex - 10) // 2)
+
+    # speed
+    speed = models.IntegerField(default=30)
 
     # to make a drop down, we have a predefined
     # list of choices before creating the field
@@ -106,6 +141,10 @@ class charSheet(models.Model):
     misc_features = models.JSONField(null=True, blank=True)
 
     spells_known = models.JSONField(null=True, blank=True)
+
+    def subtract_from_field(self, field_name):
+        field_value = getattr(self, field_name)
+        return field_value - 10
 
     # spell slots tbd
     # spellslots =

@@ -4,7 +4,9 @@ from .views import (
     CharacterDetailView,
     CharacterCreateView,
     CharacterUpdateView,
-    CharacterDeleteView
+    CharacterDeleteView,
+    CharacterDetailTestingView,
+    
 )
 
 urlpatterns = [
@@ -27,6 +29,11 @@ urlpatterns = [
     path(
         "<str:author>/character/<int:pk>/delete",
         CharacterDeleteView.as_view(),
-        name="character_delete"
-        )
+        name="character_delete",
+    ),
+    path(
+        "<str:author>/character/<int:pk>/testing",
+        CharacterDetailTestingView.as_view(),
+        name="character_details_testing",
+    ),
 ]
