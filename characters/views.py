@@ -49,13 +49,21 @@ class CharacterDetailTestingView(DetailView):
 class CharacterCreateView(LoginRequiredMixin, CreateView):
     model = charSheet
     template_name = "character_new.html"
-    fields = "__all__"
+    fields = [
+        field.name for field in charSheet._meta.get_fields() if field.name != "author"
+    ]
+
+    def form_valid(self, form):
+        form.instance.author = self.request.user
+        return super().form_valid(form)
 
 
 class CharacterUpdateView(UpdateView):
     model = charSheet
     template_name = "character_update.html"
-    fields = "__all__"
+    fields = [
+        field.name for field in charSheet._meta.get_fields() if field.name != "author"
+    ]
 
 
 class CharacterDeleteView(DeleteView):
