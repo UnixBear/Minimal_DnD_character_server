@@ -43,9 +43,8 @@
               </div>
       </div>
     </header>
-    <div class="container">
-      <div class="row">
-        <div class="col-md-8">
+    <div class="w3-container">
+      <div class="w3-row">
           {% if user.is_authenticated %}
             <p>yes hello {{ user.username }}</p>
             <p><a href="{% url 'logout' %}" class="btn btn-secondary">Log Out</a></p>
@@ -53,7 +52,6 @@
             <p>ur not logged in </p>
           {% endif %}
           {% block content %} {% endblock content %}
-        </div>
       </div>
     </div>
     <!-- Bootstrap JavaScript Bundle -->
