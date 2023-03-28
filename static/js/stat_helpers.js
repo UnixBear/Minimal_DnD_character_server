@@ -6,11 +6,11 @@ function testfunct() {
     return 10;
 }
 
-function toggleTopBar() {
-  var topBar = document.getElementById("top-bar");
-  if (topBar.style.display === "none") {
-    topBar.style.display = "block";
+function toggleTopBar(elementId) {
+  var element = document.getElementById(elementId);
+  if (element.style.display === "none") {
+    element.style.display = "block";
   } else {
-    topBar.style.display = "none";
+    element.style.display = "none";
   }
 }
