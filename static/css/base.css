@@ -29,13 +29,6 @@ padding: 0 10px;
 box-sizing: border-box;
 }
 
-input[type="text"] {
-width: 100%;
-padding: 10px;
-border: none;
-border-radius: 4px;
-margin-bottom: 10px;
-}
 @media only screen and (max-width: 768px) {
 .col {
   flex-basis: 50%;
