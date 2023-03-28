@@ -1,7 +1,7 @@
 input[type="text"] {
 width: 100%;
 padding: 10px;
-border: none;
+border: 2px teal;
 border-radius: 4px;
 margin-bottom: 10px;
 }
@@ -40,12 +40,7 @@ box-sizing: border-box;
   flex-basis: 100%;
 }
 }
-input,
-textarea,
-select {
-  border: none;
-  outline: none;
-}
+
 
 textarea {
   width: 100%;
@@ -80,7 +75,7 @@ textarea {
   padding-top: 16px;
   padding-left: 8px;
 }
-
+ma
 .info>div>span {
   background-color: #FFFFFF;
   padding: 8px;
@@ -88,4 +83,13 @@ textarea {
 
 .label {
   font-weight: bold;
+}
+
+.status {
+  display: inline-block;
+  padding: 10px;
+  background-color: #f2f2f2;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  overflow: auto;
 }

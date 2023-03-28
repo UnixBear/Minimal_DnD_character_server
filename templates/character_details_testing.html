@@ -310,10 +310,10 @@
     onclick="toggleTopBar('status')">
     Status
   </button>
-  <div id="status" class="w3-card w3-animate-opacity">
+  <div id="status" class="w3-animate-opacity">
     <div id="hit-points" class="w3-col w3-padding m8 l4 w3-border-right">
       <div id="temp-health" class="w3-col w3-padding">
-        <input type="text" name="temp-health" />
+        <input type="text" name="temp-health" class="form-control">
         <br />
         <span class="label w3-padding">Temporary Health</span>
       </div>
@@ -364,5 +364,6 @@
       <textarea name="boons" rows="5"></textarea>
     </div>
   </div>
+  
   {% endblock content %}
 </div>
