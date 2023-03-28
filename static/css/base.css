@@ -1,7 +1,7 @@
 input[type="text"] {
 width: 100%;
 padding: 10px;
-border: 2px teal;
+border: 1px solid teal;
 border-radius: 4px;
 margin-bottom: 10px;
 }
