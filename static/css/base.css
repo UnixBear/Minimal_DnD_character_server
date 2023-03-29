@@ -93,3 +93,173 @@ ma
   border-radius: 4px;
   overflow: auto;
 }
+
+#saves-skills input[type="text"] {
+  border-bottom: 1px solid #000000;
+  border-left: 1px solid #e91e6380;
+  border-right: 1px solid #e91e6380;
+  border-top: 1px solid #e91e6380;
+  text-align: center;
+  margin-top: 4px;
+}
+
+#saves-skills>div {
+  /*min-height: 240px;*/
+  min-width: 290px;
+  border-right: 1px solid #ccc!important;
+  border-top: 1px solid #ccc!important;
+}
+
+.auto-filled-shadow {
+  box-shadow: 0 2px 5px 0 rgb(103 58 183 / 48%), 0 2px 10px 0 rgb(0 0 0 / 12%)!important;
+}
+
+.auto-filled-border {
+  border: solid 1px #e91e6380;
+}
+
+.auto-filled-border-bottom {
+  border-bottom: solid 1px #e91e6380;
+}
+
+[type=checkbox],
+[type=radio] {
+    margin-left: 12px;
+    box-shadow: 0 2px 5px 0 rgb(116 155 226 / 48%), 0 2px 10px 0 rgb(0 0 0 / 12%);
+}
+
+.footer {
+    text-align: center;
+}
+
+
+/* Page 1 */
+
+#prof-traits-container {
+    padding-right: 16px;
+}
+
+#attributes .label {
+    font-size: 1.2em;
+}
+
+#attributes .box {
+    min-height: 150px;
+    min-width: 130px;
+    max-width: 160px;
+    margin: auto;
+    background-size: cover;
+    margin-right: 16px;
+    margin-bottom: 16px;
+}
+
+#attributes .att {
+    width: 60%;
+    height: 46%;
+    font-size: 44px;
+    margin: auto;
+    display: block;
+    text-align: center;
+    box-shadow: 0 2px 5px 0 rgb(116 155 226 / 48%), 0 2px 10px 0 rgb(0 0 0 / 12%);
+    border-radius: 4px;
+}
+
+#attributes .att-mod {
+    width: 40%;
+    font-size: 24px;
+    margin: auto;
+    display: block;
+    text-align: center;
+    background: transparent;
+    border-radius: 4px;
+    padding: 5px;
+    /*box-shadow: 0 2px 5px 0 rgb(116 155 226 / 48%), 0 2px 10px 0 rgb(0 0 0 / 12%);*/
+}
+
+#saves-skills input[type="text"] {
+    border-bottom: 1px solid #000000;
+    border-left: 1px solid #e91e6380;
+    border-right: 1px solid #e91e6380;
+    border-top: 1px solid #e91e6380;
+    text-align: center;
+    margin-top: 4px;
+}
+
+#spell-att select {
+    font-size: 1.2em;
+}
+
+#status>div {
+    min-height: 191px;
+    border-right: 1px solid #ccc!important;
+    border-top: 1px solid #ccc!important;
+}
+
+#saves-skills>div {
+    /*min-height: 240px;*/
+    min-width: 290px;
+    border-right: 1px solid #ccc!important;
+    border-top: 1px solid #ccc!important;
+}
+
+#death-saves {
+    align-items: center;
+    text-align: center;
+    min-width: 140px;
+}
+
+#hit-dice>div {
+    text-align: center;
+}
+
+#hit-dice input[name="hit-dice"] {
+    width: 70%;
+    height: 66%;
+    font-size: 44px;
+    margin: auto;
+    display: block;
+    text-align: center;
+    margin-top: 15%;
+    border-radius: 7px;
+    box-shadow: 0 2px 5px 0 rgb(116 155 226 / 48%), 0 2px 10px 0 rgb(0 0 0 / 12%);
+}
+
+#hit-dice .label {
+    text-align: center;
+}
+
+#hit-dice input[name="current-hd"] {
+    border-bottom: 1px solid black;
+    width: 96px;
+}
+
+#hit-points {
+    min-width: 296px;
+}
+
+#hit-points>div {
+    text-align: center;
+    padding: 8px;
+}
+
+#hit-points input[name="temp-health"] {
+    border-radius: 7px;
+    box-shadow: 0 2px 5px 0 rgb(116 155 226 / 48%), 0 2px 10px 0 rgb(0 0 0 / 12%);
+    width: 80px;
+    height: 44px;
+    margin: auto;
+    text-align: center;
+    font-size: 2em;
+}
+
+#hit-points #current-health input,
+#hit-points #max-health input {
+    width: 100px;
+    height: 66%;
+    font-size: 44px;
+    border-radius: 7px;
+    box-shadow: 0 2px 5px 0 rgb(116 155 226 / 48%), 0 2px 10px 0 rgb(0 0 0 / 12%);
+    margin: auto;
+    text-align: center;
+}
+

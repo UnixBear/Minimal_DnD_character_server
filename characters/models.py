@@ -28,7 +28,24 @@ class charSheet(models.Model):
     # settings.py and above in User
     # character_id = User
 
-    character_class = models.CharField(max_length=45)
+    character_classes = (
+        ("Barbarian", "Barbarian"),
+        ("Bard", "Bard"),
+        ("Cleric", "Cleric"),
+        ("Druid", "Druid"),
+        ("Fighter", "Fighter"),
+        ("Monk", "Monk"),
+        ("Paladin", "Paladin"),
+        ("Ranger", "Ranger"),
+        ("Rogue", "Rogue"),
+        ("Sorcerer", "Sorcerer"),
+        ("Warlock", "Warlock"),
+        ("Wizard", "Wizard"),
+    )
+
+    character_class = models.CharField(
+        max_length=45, choices=character_classes, default="Barbarian",
+    )
 
     level = models.IntegerField(default=1)
 
