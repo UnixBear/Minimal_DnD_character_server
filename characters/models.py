@@ -2,12 +2,59 @@ from django.db import models
 from django.urls import reverse
 from django.conf import settings
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.utils.text import slugify
+from django.core.exceptions import ValidationError
+from django.utils.translation import gettext_lazy as gtl
+import json
 
 
 # for creating a relative unique id per
 # user
 # User = get_user_model()
+
+class_list = (
+    "Barbarian",
+    "Bard",
+    "Cleric",
+    "Druid",
+    "Fighter",
+    "Monk",
+    "Paladin",
+    "Ranger",
+    "Rogue",
+    "Sorcerer",
+    "Warlock",
+    "Wizard",
+)
+
+
+def validate_classes(value):
+    errors = {}
+    for key in value:
+        print(value[key]["name"])
+        if key not in ["class1", "class2"]:
+            errors[key] = "Invalid key"
+        if not isinstance(value[key], dict):
+            errors[key] = "Invalid value"
+        if not set(value[key].keys()) == {"name", "level"}:
+            errors[key] = "Invalid keys in nested dictionary"
+        if (
+            not isinstance(value[key]["name"], str)
+            or value[key]["name"] not in class_list
+        ):
+            errors[key] = "Invalid class name"
+        if not isinstance(value[key]["level"], int):
+            errors[key] = "Invalid class level"
+    if errors:
+        raise ValidationError(*errors.values())
+
+
+# this is to get around the field being an instance
+def get_default_class():
+    return
+    {
+        "class1": {"name": "Wizard", "level": 10},
+        "class2": {"name": "Barbarian", "level": 10},
+    }
 
 
 # Create your models here.
@@ -44,7 +91,14 @@ class charSheet(models.Model):
     )
 
     character_class = models.CharField(
-        max_length=45, choices=character_classes, default="Barbarian",
+        max_length=50, choices=character_classes, default="Barbarian"
+    )
+
+    classes = models.JSONField(
+        default=get_default_class,
+        blank=True,
+        null=True,
+        validators=[validate_classes],
     )
 
     level = models.IntegerField(default=1)
@@ -63,6 +117,13 @@ class charSheet(models.Model):
     @property
     def spell_save_DC(self):
         return 8 + self.proficiency_bonus
+
+    # this property gives total level
+    @property
+    def char_level(self):
+        return self.classes.get("class1", {}).get("level", None) + self.classes.get(
+            "class2", {}
+        ).get("level", None)
 
     diety = models.CharField(max_length=45, default="Pelor")
 

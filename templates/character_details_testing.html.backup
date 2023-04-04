@@ -1,0 +1,579 @@
+{% extends "base.html" %} {% load static %}
+<script src="{% static 'js/stat_helpers.js' %}"></script>
+{% block title %}BETA VERS{% endblock title %} {% block content %}
+<link rel="stylesheet" href="{% static 'css/base.css' %}">
+
+<header
+  id="character-basic-info"
+  class="page-width w3-container w3-content w3-margin-top"
+>
+  <div id="basic-info1" class="w3-col w3-card-4 w3-round w3-margin-bottom">
+    <div class="w3-card w3-padding">
+      <div class="row">
+        <div class="col">
+          <span class="label">Character Name</span>
+          <input type="text"  placeholder="Example: Johnny Darksouls" />
+        </div>
+        <div class="col">
+          <span class="label">Class/Level</span>
+          <input type="text" placeholder="Example: Fighter 1" />
+        </div>
+        <div class="col">
+          <span class="label">Class/Level</span>
+          <input type="text" placeholder="Example: Wizard 19" />
+        </div>
+      </div>
+    </div>
+  </div>
+  <div id="basic-info2" class="w3-col w3-card-4 w3-round w3-margin-bottom">
+    <div class="w3-card w3-padding">
+      <div class="row">
+        <div class="col">
+          <span class="label">Race</span>
+          <input type="text" placeholder="Example: Kobold" />
+        </div>
+        <div class="col">
+          <span class="label">Player</span>
+          <input type="text" placeholder="Example: Miyazaki-San" />
+        </div>
+        <div class="col">
+          <span class="label">Background</span>
+          <input type="text" placeholder="Example: Acolyte" />
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <span class="label">Experience</span>
+          <input type="text" placeholder="Example: 1" />
+        </div>
+        <div class="col">
+          <span class="label">Alignment</span>
+          <select class="form-select" aria-label="Alignment Options">
+            <option value="1">Neutral Good</option>
+            <option value="2">Neutral Evil</option>
+          </select>
+        </div>
+        <div class="col">
+          <span class="label">Diety</span>
+          <input type="text" placeholder="Example: Gwyn \[T]/" />
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+<div
+  id="page-1"
+  class="page w3-container w3-content w3-margin-top w3-margin-bottom"
+>
+  <div class="w3-col w3-margin-bottom">
+    <button
+      class="w3-button w3-bar-block w3-left-align w3-teal"
+      onclick="toggleTopBar('top-bar')"
+    >
+      Attributes
+    </button>
+    <div
+      id="top-bar"
+      class="w3-col w3-center w3-card w3-round w3-animate-opacity"
+      style=""
+    >
+      <div class="w3-col w3-padding m4 l2">
+        <div class="input-frame">
+          <input
+            type="text"
+            name="proficiency"
+            value="{{ charsheet.proficiency_bonus }}"
+            maxlength="2"
+            size="2"
+            readonly
+          />
+        </div>
+        <div class="label-frame">
+          <span class="label">Proficiency Bonus</span>
+        </div>
+      </div>
+      <div class="w3-col w3-padding m4 l2">
+        <div class="input-frame">
+          <input
+            type="text"
+            value="{{ charDex_bonus }}"
+            name="initiative"
+            maxlength="2"
+            size="2"
+            readonly
+          />
+        </div>
+        <div class="label-frame">
+          <span class="label">Initiative Bonus</span>
+        </div>
+      </div>
+      <div class="w3-col w3-padding m4 l2">
+        <div class="input-frame">
+          <input
+            class="auto-filled-border"
+            value="{{ charsheet.passive_perception }}"
+            type="text"
+            name="passive-perception"
+            maxlength="2"
+            size="2"
+          />
+        </div>
+        <div class="label-frame">
+          <span class="label">Passive Perception</span>
+        </div>
+      </div>
+      <div class="w3-col w3-padding m4 l2">
+        <div class="input-frame">
+          <input
+            type="text"
+            value="{{ charsheet.armor_class }}"
+            name="ac"
+            maxlength="2"
+            size="2"
+          />
+        </div>
+        <div class="label-frame">
+          <span class="label">Armor Class</span>
+        </div>
+      </div>
+      <div class="w3-col w3-padding m4 l2">
+        <div class="input-frame">
+          <input
+            type="text"
+            value="{{ charsheet.speed }}"
+            name="speed"
+            maxlength="2"
+            size="2"
+          />
+        </div>
+        <div class="label-frame">
+          <span class="label">Speed</span>
+        </div>
+      </div>
+      <div class="w3-col w3-padding m4 l2">
+        <div class="input-frame">
+          <input
+            class="auto-filled-border"
+            value="{{ charsheet.spell_save_DC }}"
+            type="text"
+            name="spell-dc"
+            maxlength="2"
+            size="2"
+          />
+        </div>
+        <div class="label-frame">
+          <span class="label">Spell Save DC</span>
+        </div>
+      </div>
+      <div class="w3-col w3-padding m4 l2" style="display: none">
+        <div class="input-frame">
+          <input type="text" name="insperation" maxlength="2" size="2" />
+        </div>
+        <div class="label-frame">
+          <span class="label">Inspiration</span>
+        </div>
+      </div>
+    </div>
+    <div class="w3-col w3-margin-bottom">
+      <button
+        class="w3-button w3-bar-block w3-left-align w3-teal w3-margin-top"
+        onclick="toggleTopBar('attributes')"
+      >
+        Attributes
+      </button>
+      <div
+        id="attributes"
+        class="w3-col w3-center w3-card w3-round w3-animate-opacity"
+      >
+        <div id="str" class="w3-col w3-padding m4 l2">
+          <span class="label">Strength</span>
+          <input
+            type="text"
+            value="{{ charsheet.charStr }}"
+            class="att"
+            name="str"
+            maxlength="2"
+            size="2"
+          />
+          <input
+            type="text"
+            value="{{ charStr_bonus }}"
+            class="att-mod auto-filled-border"
+            name="str-mod"
+            maxlength="2"
+            size="2"
+          />
+        </div>
+        <div id="dex" class="w3-col w3-padding m4 l2">
+          <span class="label">Dexterity</span>
+          <input
+            type="text"
+            value="{{ charsheet.charDex }}"
+            class="att"
+            name="dex"
+            maxlength="2"
+            size="2"
+          />
+          <input
+            type="text"
+            value="{{ charDex_bonus }}"
+            class="att-mod auto-filled-border"
+            name="dex-mod"
+            maxlength="2"
+            size="2"
+          />
+        </div>
+        <div id="con" class="w3-col w3-padding m4 l2">
+          <span class="label">Constitution</span>
+          <input
+            type="text"
+            value="{{ charsheet.charCon }}"
+            class="att"
+            name="con"
+            maxlength="2"
+            size="2"
+          />
+          <input
+            type="text"
+            value="{{ charCon_bonus }}"
+            class="att-mod auto-filled-border"
+            name="con-mod"
+            maxlength="2"
+            size="2"
+          />
+        </div>
+        <div id="int" class="w3-col w3-padding m4 l2">
+          <span class="label">Intelligence</span>
+          <input
+            type="text"
+            value="{{ charsheet.charInt }}"
+            class="att"
+            name="int"
+            maxlength="2"
+            size="2"
+          />
+          <input
+            type="text"
+            value="{{ charInt_bonus }}"
+            class="att-mod auto-filled-border"
+            name="int-mod"
+            maxlength="2"
+            size="2"
+          />
+        </div>
+        <div id="wis" class="w3-col w3-padding m4 l2">
+          <span class="label">Wisdom</span>
+          <input
+            type="text"
+            value="{{ charsheet.charWis }}"
+            class="att"
+            name="wis"
+            maxlength="2"
+            size="2"
+          />
+          <input
+            type="text"
+            value="{{ charWis_bonus }}"
+            class="att-mod auto-filled-border"
+            name="wis-mod"
+            maxlength="2"
+            size="2"
+          />
+        </div>
+        <div id="cha" class="w3-col w3-padding m4 l2">
+          <span class="label">Charisma</span>
+          <input
+            type="text"
+            value="{{ charsheet.charCha }}"
+            class="att"
+            name="cha"
+            maxlength="2"
+            size="2"
+          />
+          <input
+            type="text"
+            value="{{ charCha_bonus }}"
+            class="att-mod auto-filled-border"
+            name="cha-mod"
+            maxlength="2"
+            size="2"
+          />
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <button
+    class="w3-button w3-bar-block w3-left-align w3-blue-grey"
+    onclick="toggleTopBar('status')">
+    Status
+  </button>
+  
+    <div id="status" class="w3-animate-opacity">
+      <div id="hit-points" class="w3-col w3-padding m8 l4 w3-border-right">
+        <div id="temp-health" class="w3-col w3-padding">
+          <input type="text" name="temp-health">
+          <span class="label w3-padding">Temporary Health</span>
+        </div>
+        <br />
+        <br />
+        <div id="current-health" class="w3-col s6 m6 l6">
+          <input type="text" name="current-health" />
+          <br />
+          <span class="label">Current Health</span>
+        </div>
+        <div id="max-health" class="w3-col s6 m6 l6">
+          <input type="text" name="max-health" />
+          <br />
+          <span class="label">Maximum Health</span>
+        </div>
+      </div>
+      <div id="hit-dice" class="w3-col w3-padding m5 l2">
+        <span class="label">Hit Dice</span>
+        <div>
+          <span class="sub-label">Current</span>
+          <input class="label" type="text" name="current-hd" />
+          <input type="text" name="hit-dice" />
+        </div>
+      </div>
+      <div id="death-saves" class="w3-col w3-padding m5 l2">
+        <span class="label">Death Saves</span>
+        <div id="successes">
+          <span class="sub-label">Success</span>
+          <div id="success-num">
+            <input class="w3-check" type="checkbox" name="success-1" />
+            <input class="w3-check" type="checkbox" name="success-2" />
+            <input class="w3-check" type="checkbox" name="success-3" />
+          </div>
+        </div>
+        <div id="failures" class="">
+          <span class="sub-label">Failure</span>
+          <div id="failure-num">
+            <input class="w3-check" type="checkbox" name="failure-1" />
+            <input class="w3-check" type="checkbox" name="failure-2" />
+            <input class="w3-check" type="checkbox" name="failure-3" />
+          </div>
+        </div>
+      </div>
+      <div id="conditions" class="w3-col w3-padding m4 l2">
+        <span class="label">Conditions</span>
+        <textarea name="conditions" rows="5"></textarea>
+      </div>
+      <div id="boons" class="w3-col w3-padding m4 l2">
+        <span class="label">Boons</span>
+        <textarea name="boons" rows="5"></textarea>
+      </div>
+    </div>
+  
+  <div class="w3-col w3-margin-bottom w3-card w3-round">
+    <button class="w3-button w3-bar-block w3-left-align w3-blue-gray">Saving Throws &amp; Skills</button>
+    <div id="saves-skills" class="w3-col w3-center w3-animate-opacity">
+        <div id="saves" class="w3-col w3-padding w3-left-align l12">
+            <div>
+                <span class="label">Saving Throws</span>
+            </div>
+            <div>
+                <span class="sub-label">Prof</span>
+            </div>
+            <div id="str-save" class="box w3-col m4 l2">
+                <input type="checkbox" name="prof">
+                <input type="text" name="str-save" maxlength="2" size="2">
+                <span class="sub-label">Strength</span>
+            </div>
+            <div id="dex-save" class="box w3-col m4 l2">
+                <input type="checkbox" name="prof">
+                <input type="text" name="dex-save" maxlength="2" size="2">
+                <span class="sub-label">Dexterity</span>
+            </div>
+            <div id="con-save" class="box w3-col m4 l2">
+                <input type="checkbox" name="prof">
+                <input type="text" name="con-save" maxlength="2" size="2">
+                <span class="sub-label">Constitution</span>
+            </div>
+            <div id="int-save" class="box w3-col m4 l2">
+                <input type="checkbox" name="prof">
+                <input type="text" name="int-save" maxlength="2" size="2">
+                <span class="sub-label">Intelligence</span>
+            </div>
+            <div id="wis-save" class="box w3-col m4 l2">
+                <input type="checkbox" name="prof">
+                <input type="text" name="wis-save" maxlength="2" size="2">
+                <span class="sub-label">Wisdom</span>
+            </div>
+            <div id="cha-save" class="box w3-col m4 l2">
+                <input type="checkbox" name="prof">
+                <input type="text" name="cha-save" maxlength="2" size="2">
+                <span class="sub-label">Charisma</span>
+            </div>
+        </div>
+        <div id="skills" class="w3-col w3-padding w3-left-align l2">
+            <div>
+                <span class="label">Strength</span>
+            </div>
+            <div>
+                <span class="sub-label">Prof</span>
+                <span class="sub-label">Expr</span>
+            </div>
+            <div id="athletics-skill" class="box">
+                <input type="checkbox" name="prof">
+                <input type="checkbox" name="expr">
+                <input type="text" name="athletics-skill" maxlength="3" size="3">
+                <span class="sub-label">Athletics</span>
+            </div>
+        </div>
+        <div id="skills" class="w3-col w3-padding w3-left-align l2">
+            <div>
+                <span class="label">Dexterity</span>
+            </div>
+            <div>
+                <span class="sub-label">Prof</span>
+                <span class="sub-label">Expr</span>
+            </div>
+            <div id="acrobatics-skill" class="box">
+                <input type="checkbox" name="prof">
+                <input type="checkbox" name="expr">
+                <input type="text" name="acrobatics-skill" maxlength="3" size="3">
+                <span class="sub-label">Acrobtics</span>
+            </div>
+            <div id="sleight-hand-skill" class="box">
+                <input type="checkbox" name="prof">
+                <input type="checkbox" name="expr">
+                <input type="text" name="sleight-hand-skill" maxlength="3" size="3">
+                <span class="sub-label">Sleight of Hand</span>
+            </div>
+            <div id="stealth-skill" class="box">
+                <input type="checkbox" name="prof">
+                <input type="checkbox" name="expr">
+                <input type="text" name="stealth-skill" maxlength="3" size="3">
+                <span class="sub-label">Stealth</span>
+            </div>
+        </div>
+        <div id="skills" class="w3-col w3-padding w3-left-align l2">
+            <div>
+                <span class="label">Intelligence</span>
+            </div>
+            <div>
+                <span class="sub-label">Prof</span>
+                <span class="sub-label">Expr</span>
+            </div>
+            <div id="arcana-skill" class="box">
+                <input type="checkbox" name="prof">
+                <input type="checkbox" name="expr">
+                <input type="text" name="arcana-skill" maxlength="3" size="3">
+                <span class="sub-label">Arcana</span>
+            </div>
+            <div id="history-skill" class="box">
+                <input type="checkbox" name="prof">
+                <input type="checkbox" name="expr">
+                <input type="text" name="history-skill" maxlength="3" size="3">
+                <span class="sub-label">History</span>
+            </div>
+            <div id="investigation-skill" class="box">
+                <input type="checkbox" name="prof">
+                <input type="checkbox" name="expr">
+                <input type="text" name="investigation-skill" maxlength="3" size="3">
+                <span class="sub-label">Investigation</span>
+            </div>
+            <div id="religion-skill" class="box">
+                <input type="checkbox" name="prof">
+                <input type="checkbox" name="expr">
+                <input type="text" name="religion-skill" maxlength="3" size="3">
+                <span class="sub-label">Religion</span>
+            </div>
+        </div>
+        <div id="skills" class="w3-col w3-padding w3-left-align l2">
+            <div>
+                <span class="label">Wisdom</span>
+            </div>
+            <div>
+                <span class="sub-label">Prof</span>
+                <span class="sub-label">Expr</span>
+            </div>
+            <div id="animal-handling-skill" class="box">
+                <input type="checkbox" name="prof">
+                <input type="checkbox" name="expr">
+                <input type="text" name="animal-handling-skill" maxlength="3" size="3">
+                <span class="sub-label">Animal Handling</span>
+            </div>
+            <div id="insight-skill" class="box">
+                <input type="checkbox" name="prof">
+                <input type="checkbox" name="expr">
+                <input type="text" name="insight-skill" maxlength="3" size="3">
+                <span class="sub-label">Insight</span>
+            </div>
+            <div id="medicine-skill" class="box">
+                <input type="checkbox" name="prof">
+                <input type="checkbox" name="expr">
+                <input type="text" name="medicine-skill" maxlength="3" size="3">
+                <span class="sub-label">Medicine</span>
+            </div>
+            <div id="nature-skill" class="box">
+                <input type="checkbox" name="prof">
+                <input type="checkbox" name="expr">
+                <input type="text" name="nature-skill" maxlength="3" size="3">
+                <span class="sub-label">Nature</span>
+            </div>
+            <div id="perception-skill" class="box">
+                <input type="checkbox" name="prof">
+                <input type="checkbox" name="expr">
+                <input type="text" name="perception-skill" maxlength="3" size="3">
+                <span class="sub-label">Perception</span>
+            </div>
+            <div id="survival-skill" class="box">
+                <input type="checkbox" name="prof">
+                <input type="checkbox" name="expr">
+                <input type="text" name="survival-skill" maxlength="3" size="3">
+                <span class="sub-label">Survival</span>
+            </div>
+        </div>
+        <div id="skills" class="w3-col w3-padding w3-left-align l2">
+            <div>
+                <span class="label">Charisma</span>
+            </div>
+            <div>
+                <span class="sub-label">Prof</span>
+                <span class="sub-label">Expr</span>
+            </div>
+            <div id="deception-skill" class="box">
+                <input type="checkbox" name="prof">
+                <input type="checkbox" name="expr">
+                <input type="text" name="deception-skill" maxlength="3" size="3">
+                <span class="sub-label">Deception</span>
+            </div>
+            <div id="intimidation-skill" class="box">
+                <input type="checkbox" name="prof">
+                <input type="checkbox" name="expr">
+                <input type="text" name="intimidation-skill" maxlength="3" size="3">
+                <span class="sub-label">Intimidation</span>
+            </div>
+            <div id="performance-skill" class="box">
+                <input type="checkbox" name="prof">
+                <input type="checkbox" name="expr">
+                <input type="text" name="performance-skill" maxlength="3" size="3">
+                <span class="sub-label">Performance</span>
+            </div>
+            <div id="persuasion-skill" class="box">
+                <input type="checkbox" name="prof">
+                <input type="checkbox" name="expr">
+                <input type="text" name="persuasion-skill" maxlength="3" size="3">
+                <span class="sub-label">Persuasion</span>
+            </div>
+        </div>
+        <div id="spell-att" class="w3-col w3-padding w3-left-align l2">
+            <div>
+                <span class="label">Spell Save DC</span>
+            </div>
+            <select name="spell-att">
+<option value="none">No Spell Casting</option>
+<option value="str">Strength</option>
+<option value="dex">Dexterity</option>
+<option value="con">Constitution</option>
+<option value="int">Intelligence</option>
+<option value="wis">Wisdom</option>
+<option value="cha">Charisma</option>
+</select>
+        </div>
+    </div>
+</div>
+  {% endblock content %}
+</div>

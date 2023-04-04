@@ -52,32 +52,18 @@
                     <span class="label">Character Name</span>
                 </div>
                 <div class="w3-col w3-padding m6 l4">
-                  <div class="input-container">
-                      <input type="text" name="level" placeholder="Wizard" value="{{ charsheet.classes.class1.name }}" />
-                  </div>
-                  <div class="input-container-small">
-                      <input type="text" name="Lv1" value="{{ charsheet.classes.class1.level }}" placeholder="1" maxlength=2 />
-                  </div>
-                      <span class="label">Class/Level</span>
-                </div>
-                <div class="w3-col w3-padding m6 l4">
-                  <div class="input-container">
-                    <input type="text" name="level-two" placeholder="Fighter" value="{{ charsheet.classes.class2.name }}" />
-                  </div>
-                  <div class="input-container-small">
-                    <input type="text" name="Lv2" value="{{ charsheet.classes.class2.level }}" placeholder="1" maxlength=2 />
-                  </div>
+                    <input type="text" name="level" placeholder="Wizard 1" value={{ charsheet.classes.class1.name }} {{ charsheet.classes.class1.level }}>
                     <span class="label">Class/Level</span>
                 </div>
                 <div class="w3-col w3-padding m6 l4">
-                  <input type="text" name="totalLv" placeholder="2" value="{{ charsheet.char_level}}" readonly/>
-                  <span class="label"> Total Level</span>
+                    <input type="text" name="level-two">
+                    <span class="label">Class/Level</span>
                 </div>
             </div>
             <!-- Character Info -->
             <div id="character-info" class="w3-col w3-card w3-round">
                 <div class="w3-col w3-padding m6 l4">
-                    <input type="text" name="race-class" value={{ charsheet.race }} />
+                    <input type="text" name="race-class" />
                     <span class="label">Race</span>
                 </div>
                 <div class="w3-col w3-padding m6 l4">
@@ -85,15 +71,15 @@
                     <span class="label">Background</span>
                 </div>
                 <div class="w3-col w3-padding m6 l4">
-                    <input type="text" name="player-name" value={{ charsheet.author }} />
+                    <input type="text" name="player-name" />
                     <span class="label">Player Name</span>
                 </div>
                 <div class="w3-col w3-padding m6 l4">
-                    <input type="text" name="exp" value={{ charsheet.exp }} />
+                    <input type="text" name="exp" />
                     <span class="label">Experience</span>
                 </div>
                 <div class="w3-col w3-padding m6 l4">
-                    <input type="text" name="alignment" value={{ charsheet.alignment }} />
+                    <input type="text" name="alignment" />
                     <span class="label">Alignment</span>
                 </div>
                 <div class="w3-col w3-padding m6 l4">
@@ -128,7 +114,7 @@
                     </div>
                     <div class="w3-col w3-padding m4 l2">
                         <div class="input-frame">
-                            <input class="auto-filled-border" type="text" value="{{ charsheet.passive_perception }}" name="passive-perception" maxlength="2" size="2" />
+                            <input class="auto-filled-border" type="text" name="passive-perception" maxlength="2" size="2" />
                         </div>
                         <div class="label-frame">
                             <span class="label">Passive Perception</span>
@@ -1597,8 +1583,8 @@
         <!-- Footer -->
         <footer class="page-width w3-container w3-content">
             <div class="footer w3-blue-gray w3-round w3-padding">
-                DnD 5<sup>th</sup> Edition Character Sheet || Created by <a href="https://github.com/Chee32" target="_blank">Chee32</a> & <a href="https://github.com/lckynmbrsvn" target="_blank">lckynmbrsvn</a>  || Editted by Sam G for use with Django ||
-                <a href="https://github.com/UnixBear/Minimal_DnD_character_server" target="_blank">GitHub Project</a>
+                DnD 5<sup>th</sup> Edition Character Sheet || Created by <a href="https://github.com/Chee32" target="_blank">Chee32</a> & <a href="https://github.com/lckynmbrsvn" target="_blank">lckynmbrsvn</a> ||
+                <a href="https://github.com/lckynmbrsvn/5e-Character-Sheet" target="_blank">GitHub Project</a>
             </div>
         </footer>
     </div>
