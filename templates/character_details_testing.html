@@ -1,5 +1,6 @@
 {% extends "base.html" %} {% load static %}
 {% block title %}BETA VERS{% endblock title %} {% block content %}
+<form method="post"> {% csrf_token %}
 
 
     <!-- Sidebar -->
@@ -1592,6 +1593,9 @@
                 </div>
             </div>
         </div>
+        <div class="w3-col w3-margin w3-padding m6 l6">
+          <button type="submit" class="btn btn-primary">Submit</button>
+        </div>
         <!-- Footer -->
         <!-- Footer -->
         <!-- Footer -->
@@ -1602,8 +1606,6 @@
             </div>
         </footer>
     </div>
-</body>
-
-</html>
+  </form>
 
   {% endblock content %}

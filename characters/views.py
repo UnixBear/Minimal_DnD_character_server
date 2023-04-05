@@ -32,7 +32,7 @@ class CharacterDetailView(DetailView):
     context_object_name = "charsheet"
 
 
-class CharacterDetailTestingView(DetailView):
+class CharacterDetailTestingView(LoginRequiredMixin, UpdateView):
     model = charSheet
     template_name = "character_details_testing.html"
     context_object_name = "charsheet"
@@ -44,7 +44,9 @@ class CharacterDetailTestingView(DetailView):
         context.update(modified_fields)
 
         return context
-
+    fields = [
+        field.name for field in charSheet._meta.get_fields() if field.name != "author"
+    ]   
 
 class CharacterCreateView(LoginRequiredMixin, CreateView):
     model = charSheet
