@@ -101,8 +101,6 @@ class charSheet(models.Model):
         validators=[validate_classes],
     )
 
-    level = models.IntegerField(default=1)
-
     # we'll create a property to generate the
     # proficiency bonus, passive perception,
     # and spell save DC

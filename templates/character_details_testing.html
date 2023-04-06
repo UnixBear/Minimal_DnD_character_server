@@ -1,7 +1,5 @@
 {% extends "base.html" %} {% load static %}
 {% block title %}BETA VERS{% endblock title %} {% block content %}
-<form method="post"> {% csrf_token %}
-
 
     <!-- Sidebar -->
     <!-- Sidebar -->
@@ -46,10 +44,11 @@
         <!-- Header -->
         <!-- Header -->
         <!-- Basic Info -->
+        <form method="post"> {% csrf_token %}
         <header id="character-basic-info" class="page-width w3-container w3-content w3-margin-top">
             <div id="basic-info" class="w3-col w3-card w3-round w3-margin-bottom">
                 <div class="w3-col w3-padding m6 l4">
-                    <input type="text"  name="char-name" placeholder="Example: Johnny Darksouls" value="{{ charsheet.char_name }}" />
+                    <input type="text"  id="id_char_name" name="char_name" placeholder="Example: Johnny Darksouls" value="{{ charsheet.char_name }}" />
                     <span class="label">Character Name</span>
                 </div>
                 <div class="w3-col w3-padding m6 l4">
@@ -82,7 +81,7 @@
                     <span class="label">Race</span>
                 </div>
                 <div class="w3-col w3-padding m6 l4">
-                    <input type="text" name="background" />
+                    <input type="text" name="background" id="id_background" value="{{ charsheet.background }}"/>
                     <span class="label">Background</span>
                 </div>
                 <div class="w3-col w3-padding m6 l4">
@@ -1593,7 +1592,7 @@
                 </div>
             </div>
         </div>
-        <div class="w3-col w3-margin w3-padding m6 l6">
+        <div class="w3-col w3-margin w3-padding m6 l6 text-center">
           <button type="submit" class="btn btn-primary">Submit</button>
         </div>
         <!-- Footer -->
