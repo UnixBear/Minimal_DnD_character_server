@@ -1,4 +1,4 @@
-{% extends "base.html" %} {% load static %}
+{% extends "base.html" %} {% load static %} {% load crispy_forms_tags %}
 {% block title %}BETA VERS{% endblock title %} {% block content %}
 
     <!-- Sidebar -->
@@ -44,8 +44,15 @@
         <!-- Header -->
         <!-- Header -->
         <!-- Basic Info -->
-        <form method="post"> {% csrf_token %}
+        <form action="" method="post"> {% csrf_token %}
         <header id="character-basic-info" class="page-width w3-container w3-content w3-margin-top">
+            {% if form.errors %}
+                <div class="alert alert-danger">
+                    {% for error in form.errors %}
+                        <p>{{ error }}</p>
+            {% endfor %}
+    </div>
+{% endif %}
             <div id="basic-info" class="w3-col w3-card w3-round w3-margin-bottom">
                 <div class="w3-col w3-padding m6 l4">
                     <input type="text"  id="id_char_name" name="char_name" placeholder="Example: Johnny Darksouls" value="{{ charsheet.char_name }}" />
@@ -77,7 +84,7 @@
             <!-- Character Info -->
             <div id="character-info" class="w3-col w3-card w3-round">
                 <div class="w3-col w3-padding m6 l4">
-                    <input type="text" name="race-class" value={{ charsheet.race }} />
+                    <input type="text" name="race" id="id_race" value="{{ charsheet.race }}" />
                     <span class="label">Race</span>
                 </div>
                 <div class="w3-col w3-padding m6 l4">
@@ -85,7 +92,7 @@
                     <span class="label">Background</span>
                 </div>
                 <div class="w3-col w3-padding m6 l4">
-                    <input type="text" name="player-name" value={{ charsheet.author }} />
+                    <input type="text" name="player-name" value={{ charsheet.author }} readonly/>
                     <span class="label">Player Name</span>
                 </div>
                 <div class="w3-col w3-padding m6 l4">
