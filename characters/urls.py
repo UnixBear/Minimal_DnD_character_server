@@ -6,7 +6,6 @@ from .views import (
     CharacterUpdateView,
     CharacterDeleteView,
     CharacterDetailTestingView,
-    
 )
 
 urlpatterns = [

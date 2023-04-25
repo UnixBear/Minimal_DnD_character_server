@@ -5,7 +5,7 @@ from django.views.generic.edit import (
     UpdateView,
     DeleteView,
 )
-from django.urls import reverse_lazy
+from django.urls import reverse_lazy, reverse
 from .models import charSheet
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.db import models
@@ -53,11 +53,6 @@ class CharacterDetailTestingView(LoginRequiredMixin, UserPassesTestMixin, Update
 
         return context
 
-    def get_success_url(self):
-        return reverse_lazy(
-            "characters:character_details_testing", kwargs={"pk": self.object.pk}
-        )
-
     def get_form_kwargs(self):
         kwargs = super().get_form_kwargs()
         kwargs.update({"instance": self.object})
@@ -67,10 +62,12 @@ class CharacterDetailTestingView(LoginRequiredMixin, UserPassesTestMixin, Update
         return get_object_or_404(charSheet, pk=self.kwargs["pk"])
 
     def form_valid(self, form):
-        response = super().form_valid(form)
-        messages.success(self.request, "Character details saved successfully.")
-        print("testing")
-        return response
+        self.object = form.save(commit=False)
+        self.object.author = self.request.user
+        self.object.save()
+        if form.errors:
+            print(form.errors)
+        return super().form_valid(form)
 
     def test_func(self):
         obj = self.get_object()

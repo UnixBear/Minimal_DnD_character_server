@@ -53,7 +53,7 @@ def get_default_class():
     return
     {
         "class1": {"name": "Wizard", "level": 10},
-        "class2": {"name": "Barbarian", "level": 10},
+        "class2": {"name": "Barbarian", "level": 10}
     }
 
 
